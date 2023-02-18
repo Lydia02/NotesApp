@@ -219,7 +219,7 @@ localhost:process.env.PORT || [NoteAPI](https://notesapi-2d5g.onrender.com/notes
 
 ### Get **public** article by authenticated user
 
-- **Route**: /blog/:id
+- **Route**: /note/:id
 - **Method**: GET
 - **Header**: Authorization: Bearer {token}
 - Resposes:
