@@ -26,7 +26,7 @@ const createNote = async (req, res, next) => {
       data: createdNote 
     })
 
-    // return res.status(201).json(createArticle)
+
   } catch (error) {
     // console.log(error)
     next(error)
@@ -101,14 +101,9 @@ const PublicNote = async (req, res, next) => {
         error: 'Requested notes is private'
       })
     }
-    // } else {
-    //   return res.status(403).json({
-    //     status: false,
-    //     error: 'Requested article is not published'
-    //   })
-    // }
+  
 
-    // update blog read count
+    // update note read count
     note.read_count += 1
     await note.save()
 
@@ -127,12 +122,6 @@ const updatePublicNoteState = async (req, res) => {
   const { id } = req.params;
   console.log(id)
   
-
- // const { title, description, state,tags, body } = updates
-
-
-  
-  //const {updates} = await req.body;
 
   const note = await Notes.findById(id)
 

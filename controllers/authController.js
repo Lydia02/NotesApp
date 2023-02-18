@@ -3,7 +3,7 @@ const passport = require("passport");
 require('dotenv').config()
 
 exports.signUp = async (req,res,next)=>{
-    const body = {_id:req.user._id, email:req.user.email}// password:req.user.password}
+    const body = {_id:req.user._id, email:req.user.email}
     try{
         // const token = jwt.sign({ user: body }, process.env.JWT_SECRET);
     res.json({
