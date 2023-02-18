@@ -40,7 +40,7 @@ An API that shows the notes created by different authenticated users.
 - run `npm dev`
 
 ## Base URL
-localhost:process.env.PORT || [BlogAPI](https://calm-erin-lizard-veil.cyclic.app/blogs)
+localhost:process.env.PORT || [NoteAPI](https://notesapi-2d5g.onrender.com/notes)
 
 ## Models
 ## Users
@@ -159,16 +159,16 @@ localhost:process.env.PORT || [BlogAPI](https://calm-erin-lizard-veil.cyclic.app
 }
 ```
 
-### Update the state from **draft** to **Published**
+### Update the accessControl from **private** to **Public**
 
-- **Route**: /blog/:id
+- **Route**: /note/:id
 - **Method**: PATCH
 - **Header**: Authorization: Bearer {token}
 - **Body**:
 
 ```
 {
-       "state": "published"
+       "accessControl": "public"
 }
 ```
 - **Responses**
@@ -190,6 +190,12 @@ localhost:process.env.PORT || [BlogAPI](https://calm-erin-lizard-veil.cyclic.app
   }
 }
 ```
+### Update made by the autheticated user
+
+- **Route**: /note/:id
+- **Method**: PATCH
+- **Header**: Authorization: Bearer {token}
+- **Body**:
 
 ```
 {
@@ -211,7 +217,7 @@ localhost:process.env.PORT || [BlogAPI](https://calm-erin-lizard-veil.cyclic.app
 }
 ```
 
-### Get **published** article by authenticated user
+### Get **public** article by authenticated user
 
 - **Route**: /blog/:id
 - **Method**: GET
@@ -264,72 +270,21 @@ localhost:process.env.PORT || [BlogAPI](https://calm-erin-lizard-veil.cyclic.app
   ]
 }
 ```
-### Get **draft** article by authenticated user
 
-- **Route**: /blog/:id
-- **Method**: GET
-- **Header**: Authorization: Bearer {token}
-- **Responses**:
-```
-{
-  "status": true,
-  "data": {
-    "_id": "636907d2b3bedc7a1ee4d434",
-    "title": "Enter your blog title",
-    "description": "Blog description",
-    "body": "blog content",
-    "author": {
-      "_id": "63690150b3bedc7a1ee4d430",
-      "firstname": "lydia1"
-    },
-    "state": "draft",
-    "read_count": 1,
-    "reading_time": 1,
-    "createdAt": "2022-11-07T13:27:20.829Z",
-    "updatedAt": "2022-11-07T13:38:20.957Z",
-    "__v": 0
-  }
-}
-```
-### Delete article by owner
+### Delete note by owner
 
-- **Route**: /blog/:id
+- **Route**: /note/:id
 - **Method**: DELETE
 - **Header**:Authorization: Bearer {token}
 - **Responses**:
 ```
 {
   "status": true,
-  "article": {
+  "note": {
     "acknowledged": true,
     "deletedCount": 1
   }
-}
-```
 
-### Get **published** articles by unauthenticated users
-
-- **Route**: /blogs
-- **Method**: GET
-- **Response:**
-
-```
-{
-  "status": true,
- message": "Published Articles found!",
-  "article": {
-    "_id": "636907d2b3bedc7a1ee4d434",
-    "title": "Enter your blog title",
-    "description": "Blog description",
-    "body": "blog content",
-    "author": "63690150b3bedc7a1ee4d430",
-    "state": "published",
-    "read_count": 1,
-    "reading_time": 1,
-    "createdAt": "2022-11-07T13:27:46.829Z",
-    "updatedAt": "2022-11-07T13:38:43.957Z",
-    "__v": 0
-  }  
 }
 ```
 
